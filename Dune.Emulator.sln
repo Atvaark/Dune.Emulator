@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dune", "Dune\Dune.csproj", "{D986803B-46F1-4F2C-956C-471ACADFD9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dune.Client", "Dune.Client\Dune.Client.csproj", "{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dune.Server", "Dune.Server\Dune.Server.csproj", "{39F9B370-CA10-4BA4-B710-DE5400F58499}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vendor", "Vendor", "{D79F60C6-A152-4C75-A4AD-CB9367D5E929}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Steamworks.NET", "Steamworks.NET", "{3F9AA237-C764-4B94-9111-34D02729BC78}"
+	ProjectSection(SolutionItems) = preProject
+		Vendor\Steamworks.NET\CSteamworks.dll = Vendor\Steamworks.NET\CSteamworks.dll
+		Vendor\Steamworks.NET\steam_api.dll = Vendor\Steamworks.NET\steam_api.dll
+		Vendor\Steamworks.NET\Steamworks.NET.dll = Vendor\Steamworks.NET\Steamworks.NET.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dune.Proxy", "Dune.Proxy\Dune.Proxy.csproj", "{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D986803B-46F1-4F2C-956C-471ACADFD9AB}.Release|Win32.ActiveCfg = Release|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EDD498AF-185B-482E-AA8F-F95A4ADD03CE}.Release|Win32.ActiveCfg = Release|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{39F9B370-CA10-4BA4-B710-DE5400F58499}.Release|Win32.ActiveCfg = Release|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2AF01CA9-450B-4E62-B5FD-5A0C9B6B2268}.Release|Win32.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3F9AA237-C764-4B94-9111-34D02729BC78} = {D79F60C6-A152-4C75-A4AD-CB9367D5E929}
+	EndGlobalSection
+EndGlobal
