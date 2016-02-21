@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -20,69 +21,26 @@ namespace Dune
         private TcpListener _listener;
         private bool _listening;
 
-        private static readonly TusProperty[] UrDragonProperties = 
+        static DuneServer()
         {
-            // Generation
-            new TusProperty(0, 0, 1), 
+            UrDragon = new OnlineUrDragon
+            {
+                Generation = 1,
+                FightCount = 0,
+                KillCount = 0,
+                SpawnTime = DateTime.Now.AddDays(-1),
+                GraceTime = DateTime.Now
+            };
 
-            // hearts
-            new TusProperty(1, 10000000, 10000000), 
-            new TusProperty(2, 10000000, 10000000),
-            new TusProperty(3, 10000000, 10000000),
-            new TusProperty(4, 10000000, 10000000),
-            new TusProperty(5, 10000000, 10000000),
-            new TusProperty(6, 10000000, 10000000),
-            new TusProperty(7, 10000000, 10000000),
-            new TusProperty(8, 10000000, 10000000),
-            new TusProperty(9, 10000000, 10000000),
-            new TusProperty(10, 10000000, 10000000),
-            new TusProperty(11, 10000000, 10000000),
-            new TusProperty(12, 10000000, 10000000),
-            new TusProperty(13, 10000000, 10000000),
-            new TusProperty(14, 10000000, 10000000),
-            new TusProperty(15, 1000000, 1000000),
+            const int maxHealth = 10000000;
+            for (int i = 0; i < UrDragon.Hearts.Length; i++)
+            {
+                UrDragon.Hearts[i].MaxHealth = maxHealth;
+                UrDragon.Hearts[i].Health = maxHealth;
+            }
+        }
 
-            // hearts max
-            new TusProperty(16, 1000000, 1000000),
-            new TusProperty(17, 1000000, 1000000),
-            new TusProperty(18, 1000000, 1000000),
-            new TusProperty(19, 1000000, 1000000),
-            new TusProperty(20, 1000000, 1000000),
-            new TusProperty(21, 1000000, 1000000),
-            new TusProperty(22, 1000000, 1000000),
-            new TusProperty(23, 1000000, 1000000),
-            new TusProperty(24, 1000000, 1000000),
-            new TusProperty(25, 1000000, 1000000),
-            new TusProperty(26, 1000000, 1000000),
-            new TusProperty(27, 1000000, 1000000),
-            new TusProperty(28, 1000000, 1000000),
-            new TusProperty(29, 1000000, 1000000),
-            new TusProperty(30, 1000000, 1000000),
-
-            // fight counter
-            new TusProperty(31, 0, 0), // 0, fights
-
-            // grace time unix timestamp
-            new TusProperty(32, 0, 1455746607),
-
-            // kill counter
-            new TusProperty(33, 0, 0),
-
-            // unknown values
-            new TusProperty(34, 0, 0),
-            new TusProperty(35, 17825793, 90229810),
-            new TusProperty(36, 0, 0),
-            new TusProperty(37, 17825793, 11772922),
-            new TusProperty(38, 0, 0),
-            new TusProperty(39, 17825793, 47409791),
-            new TusProperty(40, 0, 0),
-
-            // armor?
-            new TusProperty(41, 0, 10800),
-
-            // spawn time unix timestamp
-            new TusProperty(42, 0, 1455746607),
-        };
+        private static readonly OnlineUrDragon UrDragon;
 
         public DuneServer(IPAddress address, int port, X509Certificate2 certificate)
         {
@@ -150,7 +108,7 @@ namespace Dune
 
             // AuthenticationInformation Footer
             var footer = stream.ReadPacket<AuthenticationInformationRequestFooter>();
-            stream.WritePacket(new AuthenticationInformationResponseFooter() { Success = true });
+            stream.WritePacket(new AuthenticationInformationResponseFooter { Success = true });
 
             return fastDataResponse.User;
         }
@@ -165,7 +123,7 @@ namespace Dune
                     var getCommonAreaRequest = (TusCommonAreaAcquisitionRequest)request;
                     var getCommonAreaResponse = new TusCommonAreaAcquisitionResponse
                     {
-                        Properties = UrDragonProperties.Where(t => getCommonAreaRequest.PropertyIndices.Contains(t.Index)).ToArray()
+                        Properties = UrDragon.ToProperties(getCommonAreaRequest.PropertyIndices)
                     };
                     stream.WritePacket(getCommonAreaResponse);
                     break;
