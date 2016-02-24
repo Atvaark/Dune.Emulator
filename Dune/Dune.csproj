@@ -40,6 +40,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DuneClient.cs" />
+    <Compile Include="Encryption\Blowfish\Check.cs" />
+    <Compile Include="Encryption\Blowfish\Exceptions\CryptoException.cs" />
+    <Compile Include="Encryption\Blowfish\Exceptions\DataLengthException.cs" />
+    <Compile Include="Encryption\Blowfish\Exceptions\OutputLengthException.cs" />
+    <Compile Include="Encryption\Blowfish\BlowfishEngine.cs" />
+    <Compile Include="Encryption\Blowfish\Pack.cs" />
+    <Compile Include="Encryption\Crypto.cs" />
+    <Compile Include="Encryption\CryptoConstants.cs" />
     <Compile Include="OnlineUrDragon.cs" />
     <Compile Include="PacketStream.cs" />
     <Compile Include="Packets\BooleanBase.cs" />
