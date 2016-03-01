@@ -321,9 +321,9 @@ namespace Dune.Encryption.Blowfish
         private readonly uint[] S0, S1, S2, S3; // the s-boxes
         private readonly uint[] P; // the p-array
 
-        private bool encrypting;
+        private bool _encrypting;
 
-        private byte[] workingKey;
+        private byte[] _workingKey;
 
         public BlowfishEngine()
         {
@@ -349,24 +349,20 @@ namespace Dune.Encryption.Blowfish
         {
             if (workingKey == null) throw new ArgumentNullException("workingKey");
 
-            this.encrypting = forEncryption;
-            this.workingKey = workingKey;
-            SetKey(this.workingKey);
+            _encrypting = forEncryption;
+            _workingKey = workingKey;
+            SetKey(_workingKey);
         }
 
-        public int ProcessBlock(
-            byte[] input,
-            int inOff,
-            byte[] output,
-            int outOff)
+        public void ProcessBlock(byte[] input, int inOff, byte[] output, int outOff)
         {
-            if (workingKey == null)
+            if (_workingKey == null)
                 throw new InvalidOperationException("Blowfish not initialised");
 
             Check.DataLength(input, inOff, BLOCK_SIZE, "input buffer too short");
             Check.OutputLength(output, outOff, BLOCK_SIZE, "output buffer too short");
 
-            if (encrypting)
+            if (_encrypting)
             {
                 EncryptBlock(input, inOff, output, outOff);
             }
@@ -374,8 +370,6 @@ namespace Dune.Encryption.Blowfish
             {
                 DecryptBlock(input, inOff, output, outOff);
             }
-
-            return BLOCK_SIZE;
         }
 
         //==================================

@@ -9,7 +9,7 @@ using Dune.Packets;
 
 namespace Dune.Proxy
 {
-    class Program
+    internal class Program
     {
         private static string _serverCertificateName = "dune.pfx";
 

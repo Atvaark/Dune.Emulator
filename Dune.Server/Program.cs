@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dune.Server
 {
-    class Program
+    internal class Program
     {
         private static string _serverCertificateName = "dune.pfx";
 

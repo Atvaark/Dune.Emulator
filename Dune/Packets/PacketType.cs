@@ -25,7 +25,7 @@
 
         TusCommonAreaAcquisitionRequest         = 0x12010100,
         TusCommonAreaAcquisitionResponse        = 0x12010200,
-        TusCommonAreaAcquisitionResponseFail    = 0x120102ff,
+        ////TusCommonAreaAcquisitionResponseFail    = 0x120102ff,
 
         TusCommonAreaSettingsRequest            = 0x12020100,
         TusCommonAreaSettingsResponse           = 0x12020200,

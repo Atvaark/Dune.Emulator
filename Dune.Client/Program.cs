@@ -7,7 +7,7 @@ using Steamworks;
 
 namespace Dune.Client
 {
-    class Program
+    static class Program
     {
         private const string CredentialsFile = "credentials.txt";
 

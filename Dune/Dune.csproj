@@ -94,8 +94,8 @@
     <Compile Include="Packets\TusProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DuneServer.cs" />
-    <Compile Include="Utility\BigEndianBinaryReader .cs" />
-    <Compile Include="Utility\BigEndianBinaryWriter .cs" />
+    <Compile Include="Utility\BigEndianBinaryReader.cs" />
+    <Compile Include="Utility\BigEndianBinaryWriter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
