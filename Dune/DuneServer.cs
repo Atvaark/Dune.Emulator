@@ -98,7 +98,7 @@ namespace Dune
 
             // AuthenticationInformation Header
             var header = stream.ReadPacket<AuthenticationInformationRequestHeader>();
-            stream.WritePacket(new AuthenticationInformationResponseHeader { ServerReadBufferLength = 256 });
+            stream.WritePacket(new AuthenticationInformationResponseHeader { ChunkLength = 256 });
 
             // TODO: Fix reading multiple chunks or chunk > int16.Max
             // AuthenticationInformation Data

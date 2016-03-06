@@ -10,12 +10,12 @@ namespace Dune.Packets.Impl
             get { return PacketType.AuthenticationInformationResponseHeader; }
         }
 
-        public ushort ServerReadBufferLength { get; set; }
+        public ushort ChunkLength { get; set; }
 
         public override void ParsePayload(byte[] payload)
         {
             var reader = new BigEndianBinaryReader(new MemoryStream(payload));
-            ServerReadBufferLength = reader.ReadUInt16();
+            ChunkLength = reader.ReadUInt16();
         }
 
         protected override byte[] SerializePayload()
@@ -23,7 +23,7 @@ namespace Dune.Packets.Impl
             byte[] payload = new byte[sizeof(int)];
             var writer = new BigEndianBinaryWriter(new MemoryStream(payload));
             // Default 256
-            writer.Write(ServerReadBufferLength);
+            writer.Write(ChunkLength);
             return payload;
         }
     }

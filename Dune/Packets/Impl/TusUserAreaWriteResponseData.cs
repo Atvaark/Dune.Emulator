@@ -1,6 +1,6 @@
 ﻿namespace Dune.Packets.Impl
 {
-    public class TusUserAreaWriteResponseData : DataChunkResponseBase
+    public class TusUserAreaWriteResponseData : DataChunkReferenceBase
     {
         public override PacketType Type
         {

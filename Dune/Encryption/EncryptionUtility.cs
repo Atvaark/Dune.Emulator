@@ -3,7 +3,7 @@ using Dune.Encryption.Blowfish;
 
 namespace Dune.Encryption
 {
-    public static class Crypto
+    public static class EncryptionUtility
     {
         private const int BlockSize = BlowfishEngine.BLOCK_SIZE;
 

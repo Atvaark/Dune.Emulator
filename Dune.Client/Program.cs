@@ -170,7 +170,7 @@ namespace Dune.Client
             string urDragonStatus = GetUrDragonStatus(client);
             Console.Clear();
             Console.Write(urDragonStatus);
-
+            
             client.Disconnect();
         }
 

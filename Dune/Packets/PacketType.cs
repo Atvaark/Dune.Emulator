@@ -2,8 +2,8 @@
 {
     public enum PacketType : uint
     {
-        OnlineCheckRequest                        = 0x10010100,
-        OnlineCheckResponse                       = 0x10010200,
+        OnlineCheckRequest                      = 0x10010100,
+        OnlineCheckResponse                     = 0x10010200,
 
         DisconnectionRequest                    = 0x10100100,
         DisconnectionResponse                   = 0x10100200,

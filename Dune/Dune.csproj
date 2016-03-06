@@ -39,6 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compression\CompressionUtility.cs" />
+    <Compile Include="Compression\Zlib\CRC32.cs" />
+    <Compile Include="Compression\Zlib\Deflate.cs" />
+    <Compile Include="Compression\Zlib\DeflateStream.cs" />
+    <Compile Include="Compression\Zlib\GZipStream.cs" />
+    <Compile Include="Compression\Zlib\Inflate.cs" />
+    <Compile Include="Compression\Zlib\InfTree.cs" />
+    <Compile Include="Compression\Zlib\ParallelDeflateOutputStream.cs" />
+    <Compile Include="Compression\Zlib\Tree.cs" />
+    <Compile Include="Compression\Zlib\Zlib.cs" />
+    <Compile Include="Compression\Zlib\ZlibBaseStream.cs" />
+    <Compile Include="Compression\Zlib\ZlibCodec.cs" />
+    <Compile Include="Compression\Zlib\ZlibConstants.cs" />
+    <Compile Include="Compression\Zlib\ZlibStream.cs" />
     <Compile Include="DuneClient.cs" />
     <Compile Include="Encryption\Blowfish\Check.cs" />
     <Compile Include="Encryption\Blowfish\Exceptions\CryptoException.cs" />
@@ -46,13 +60,13 @@
     <Compile Include="Encryption\Blowfish\Exceptions\OutputLengthException.cs" />
     <Compile Include="Encryption\Blowfish\BlowfishEngine.cs" />
     <Compile Include="Encryption\Blowfish\Pack.cs" />
-    <Compile Include="Encryption\Crypto.cs" />
-    <Compile Include="Encryption\CryptoConstants.cs" />
+    <Compile Include="Encryption\EncryptionUtility.cs" />
+    <Compile Include="Encryption\KeyConstants.cs" />
     <Compile Include="OnlineUrDragon.cs" />
     <Compile Include="PacketStream.cs" />
     <Compile Include="Packets\BooleanBase.cs" />
     <Compile Include="Packets\DataChunkBase.cs" />
-    <Compile Include="Packets\DataChunkResponseBase.cs" />
+    <Compile Include="Packets\DataChunkReferenceBase.cs" />
     <Compile Include="Packets\EmptyBase.cs" />
     <Compile Include="Packets\Impl\AuthenticationInformationRequestData.cs" />
     <Compile Include="Packets\Impl\AuthenticationInformationRequestFooter.cs" />
@@ -97,6 +111,7 @@
     <Compile Include="Utility\BigEndianBinaryReader.cs" />
     <Compile Include="Utility\BigEndianBinaryWriter.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

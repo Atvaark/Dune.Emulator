@@ -1,6 +1,6 @@
 ﻿namespace Dune.Packets.Impl
 {
-    public class AuthenticationInformationResponseData : DataChunkResponseBase
+    public class AuthenticationInformationResponseData : DataChunkReferenceBase
     {
         public override PacketType Type
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using Dune.Packets;
 using Dune.Packets.Impl;
@@ -154,6 +155,63 @@ namespace Dune
         public void Close()
         {
             _stream.Close();
+        }
+
+        public void WriteData<TRequest, TResponse>(byte[] data, ushort chunkLength)
+            where TRequest : DataChunkBase, new()
+            where TResponse : DataChunkReferenceBase, new()
+        {
+            chunkLength = data.Length < chunkLength ? (ushort)data.Length : chunkLength;
+
+            MemoryStream dataStream = new MemoryStream(data);
+            byte[] chunk = new byte[chunkLength];
+            while (dataStream.Position < dataStream.Length)
+            {
+                int dataChunkLength;
+                int remainingLength = (int)(dataStream.Length - dataStream.Position);
+                if (remainingLength < chunkLength)
+                {
+                    const byte chunkPadding = 0xDD;
+                    for (int i = remainingLength; i < chunk.Length; i++)
+                    {
+                        chunk[i] = chunkPadding;
+                    }
+
+                    dataChunkLength = remainingLength;
+                }
+                else
+                {
+                    dataChunkLength = chunkLength;
+                }
+
+                int chunkOffset = (int)dataStream.Position;
+                dataStream.Read(chunk, 0, dataChunkLength);
+
+                WritePacket(new TRequest { Chunk = chunk, ChunkOffset = chunkOffset, ChunkLength = chunkLength });
+                var response = ReadPacket<TResponse>();
+
+                Debug.Assert(response.ChunkOffset == chunkOffset);
+                Debug.Assert(response.ChunkLength == chunkLength);
+            }
+        }
+
+        public byte[] ReadData<TRequest, TResponse>(int bufferLength, ushort chunkLength)
+            where TRequest : DataChunkReferenceBase, new()
+            where TResponse : DataChunkBase, new()
+        {
+            byte[] data = new byte[bufferLength];
+            MemoryStream dataStream = new MemoryStream(data);
+            while (dataStream.Position < dataStream.Length)
+            {
+                WritePacket(new TRequest { ChunkOffset = (int)dataStream.Position, ChunkLength = chunkLength });
+                var dataResponse = ReadPacket<TResponse>();
+
+                Debug.Assert(dataResponse.ChunkOffset == dataStream.Position);
+                Debug.Assert(dataResponse.Chunk.Length == chunkLength);
+                dataStream.Write(dataResponse.Chunk, 0, dataResponse.Chunk.Length);
+            }
+
+            return data;
         }
     }
 }

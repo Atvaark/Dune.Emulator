@@ -3,7 +3,7 @@ using Dune.Utility;
 
 namespace Dune.Packets
 {
-    public abstract class DataChunkResponseBase : PacketBase
+    public abstract class DataChunkReferenceBase : PacketBase
     {
         public int ChunkOffset { get; set; }
         public ushort ChunkLength { get; set; }

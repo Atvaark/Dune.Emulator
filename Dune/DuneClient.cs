@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net.Security;
 using System.Net.Sockets;
+using System.Text;
+using Dune.Compression;
+using Dune.Encryption;
 using Dune.Packets;
 using Dune.Packets.Impl;
 
@@ -92,15 +98,25 @@ namespace Dune
             _stream.WritePacket(new TusUserAreaReadRequestHeader { User = _steamId.ToString("X16") });
             var headerResponse = _stream.ReadPacket<TusUserAreaReadResponseHeader>();
 
-            // TODO: Fix reading multiple chunks or chunk > int16.Max
-            _stream.WritePacket(new TusUserAreaReadRequestData { ChunkLength = (ushort)headerResponse.ServerReadBufferLength });
-            var dataResponse = _stream.ReadPacket<TusUserAreaReadResponseData>();
+            const ushort chunkLength = 2048;
+            byte[] data = _stream.ReadData<TusUserAreaReadRequestData, TusUserAreaReadResponseData>(headerResponse.DataLength, chunkLength);
 
             _stream.WritePacket(new TusUserAreaReadRequestFooter());
             _stream.ReadPacket<TusUserAreaReadResponseFooter>();
 
-            return dataResponse.Chunk;
+            // TODO: Decrypt, Unpack and parse the user area data.
+
+            //Action<byte[]> log = bytes => Debug.WriteLine(BitConverter.ToString(bytes).Replace("-", " ") + "\r\n");
+            //log(data);
+            //byte[] decryptedData = EncryptionUtility.Decrypt(data, Encoding.ASCII.GetBytes(KeyConstants.UserKey));
+            //log(decryptedData);
+            //byte[] unpackedData = CompressionUtility.Decompress(decryptedData);
+            //log(unpackedData);
+            //return unpackedData;
+
+            return data;
         }
+
 
         private void Authenticate()
         {
@@ -109,22 +125,20 @@ namespace Dune
             _stream.WritePacket(new FastDataResponse { User = _steamId.ToString("X16") }, fastDataRequest.Sequence);
 
             // ConnectionSummary
-            _stream.ReadPacket<ConnectionSummaryNotification>();
+            var summary = _stream.ReadPacket<ConnectionSummaryNotification>();
+            if (!summary.Success) throw new ApplicationException();
 
             // AuthenticationInformation Header
             _stream.WritePacket(new AuthenticationInformationRequestHeader { DataLength = _ticket.Length });
-            _stream.ReadPacket<AuthenticationInformationResponseHeader>();
+            var header = _stream.ReadPacket<AuthenticationInformationResponseHeader>();
 
-            // TODO: Fix reading multiple chunks or chunk > int16.Max
-            // AuthenticationInformation Data
-            _stream.WritePacket(new AuthenticationInformationRequestData { Chunk = _ticket, ChunkLength = (ushort)_ticket.Length });
-            _stream.ReadPacket<AuthenticationInformationResponseData>();
+            _stream.WriteData<AuthenticationInformationRequestData, AuthenticationInformationResponseData>(_ticket, header.ChunkLength);
 
             // AuthenticationInformation Footer
             _stream.WritePacket(new AuthenticationInformationRequestFooter());
-            _stream.ReadPacket<AuthenticationInformationResponseFooter>();
+            var footer = _stream.ReadPacket<AuthenticationInformationResponseFooter>();
 
-            _connected = true;
+            _connected = footer.Success;
         }
     }
 }
